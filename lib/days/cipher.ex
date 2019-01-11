@@ -25,4 +25,15 @@ defmodule AdventOfCode.Cipher do
     <<letter>>
   end
 
+  def get_coordinates( key_word, sentence ) do
+    s = String.replace( sentence, " ", "")
+  end
+
+  def fill_key_work( word, size ) do
+    letters = word |> String.codepoints
+    fill( letters, size )
+  end
+
+  def fill( letters, size ) do
+  end
 end
