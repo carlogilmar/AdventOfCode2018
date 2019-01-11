@@ -14,14 +14,8 @@ alias AdventOfCode.Cipher
   end
 
   test "Generate the alphabet matriz" do
-    row1 = 'abcdefghijklmnopqrstuvwxyz'
-    letter1 = 'a'
-    row2 = 'bcdefghijklmnopqrstuvwxyza'
-    letter2 = 'b'
-    row1_m = Cipher.generate_row( letter1, row1 )
-    row2_m = Cipher.generate_row( letter2, row2 )
-    assert row1_m == 'bcdefghijklmnopqrstuvwxyza'
-    assert row2_m == 'cdefghijklmnopqrstuvwxyzab'
+    matriz = Cipher.create_matriz()
+    assert length( matriz ) == 26
   end
 
 end
