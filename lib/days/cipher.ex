@@ -18,8 +18,8 @@ defmodule AdventOfCode.Cipher do
 
   def find_coordinate( {coor_x, coor_y} ) do
     matriz = create_matriz()
-    row = Enum.find( matriz, fn [x|_y] -> <<x>> == "#{coor_y}"  end)
-    <<binary_coor::8>> = coor_x
+    row = Enum.find( matriz, fn [x|_y] -> <<x>> == "#{coor_x}"  end)
+    <<binary_coor::8>> = coor_y
     size = ?a..binary_coor |> Enum.to_list |> length
     letter = Enum.at( row, size-1)
     <<letter>>

@@ -19,9 +19,9 @@ alias AdventOfCode.Cipher
   end
 
   test "Find a letter in the matriz" do
-    letter_in_matriz1 = Cipher.find_coordinate( {"e","b"} )
-    letter_in_matriz2 = Cipher.find_coordinate( {"x","d"} )
-    letter_in_matriz3 = Cipher.find_coordinate( {"d","p"} )
+    letter_in_matriz1 = Cipher.find_coordinate( {"b","e"} )
+    letter_in_matriz2 = Cipher.find_coordinate( {"d","x"} )
+    letter_in_matriz3 = Cipher.find_coordinate( {"p","d"} )
     assert letter_in_matriz1 == "f"
     assert letter_in_matriz2 == "a"
     assert letter_in_matriz3 == "s"
