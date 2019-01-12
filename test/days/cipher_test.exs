@@ -33,13 +33,14 @@ alias AdventOfCode.Cipher
     word_filled = Cipher.fill( word, size )
     res = ["v", "i", "g", "i", "l", "a", "n", "c", "e", "v", "i", "g", "i", "l",
        "a", "n", "c", "e", "v", "i", "g", "i", "l", "a", "n", "c", "e", "v"]
-    assert res = word_filled
+    assert res == word_filled
   end
-  #test "Create coordinates for cipher" do
-  #  key_word = "vigilance"
-  #  sentence = "meet me on Tuesday evening at seven"
-  #  coordinates = Cipher.get_coordinates( key_word, sentence )
-  #  assert length( coordinates ) == 29
-  #end
+
+  test "Create coordinates for cipher" do
+    key_word = "vigilance"
+    sentence = "meet me on Tuesday evening at seven"
+    coordinates = Cipher.get_coordinates( key_word, sentence )
+    assert length( coordinates ) == 29
+  end
 
 end

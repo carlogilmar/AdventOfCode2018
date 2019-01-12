@@ -26,7 +26,10 @@ defmodule AdventOfCode.Cipher do
   end
 
   def get_coordinates( key_word, sentence ) do
-    s = String.replace( sentence, " ", "")
+    sentence_letters = sentence |> String.replace(" ", "") |> String.codepoints
+    size = length( sentence_letters )
+    key_word_filled = fill( key_word, size )
+    Enum.zip( key_word_filled, sentence_letters )
   end
 
   def fill( word, size ) do
