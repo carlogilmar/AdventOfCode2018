@@ -27,11 +27,19 @@ alias AdventOfCode.Cipher
     assert letter_in_matriz3 == "s"
   end
 
-  test "Create coordinates for cipher" do
-    key_word = "vigilance"
-    sentence = "meet me on Tuesday evening at seven"
-    coordinates = Cipher.get_coordinates( key_word, sentence )
-    assert length( coordinates ) == 29
+  test "Fill a word with n letters" do
+    size = 28
+    word = "vigilance"
+    word_filled = Cipher.fill( word, size )
+    res = ["v", "i", "g", "i", "l", "a", "n", "c", "e", "v", "i", "g", "i", "l",
+       "a", "n", "c", "e", "v", "i", "g", "i", "l", "a", "n", "c", "e", "v"]
+    assert res = word_filled
   end
+  #test "Create coordinates for cipher" do
+  #  key_word = "vigilance"
+  #  sentence = "meet me on Tuesday evening at seven"
+  #  coordinates = Cipher.get_coordinates( key_word, sentence )
+  #  assert length( coordinates ) == 29
+  #end
 
 end

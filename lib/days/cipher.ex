@@ -29,11 +29,20 @@ defmodule AdventOfCode.Cipher do
     s = String.replace( sentence, " ", "")
   end
 
-  def fill_key_work( word, size ) do
+  def fill( word, size ) do
     letters = word |> String.codepoints
-    fill( letters, size )
+    letters_size = length( letters )
+    times = rem( size, letters_size )
+    sentence_filled = String.duplicate( word, times+2 ) |> String.codepoints
+    add_letters( {letters, size, sentence_filled, letters_size == size} )
   end
 
-  def fill( letters, size ) do
+  def add_letters( {letters, _size, _sentence_filled, true} ), do: letters
+  def add_letters( {letters, size, sentence_filled, false} ) do
+    [letter|tail_sentence_filled] = sentence_filled
+    letters_filled = letters ++ [letter]
+    new_sentence_filled = length( letters_filled )
+    add_letters { letters_filled, size, tail_sentence_filled, new_sentence_filled==size }
   end
+
 end
