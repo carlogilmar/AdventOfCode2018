@@ -50,4 +50,20 @@ alias AdventOfCode.Cipher
     assert sentence_cipher == "hmkbxebpxpmyllyrxiiqtoltfgzzv"
   end
 
+  test "Find a coordinate for decode" do
+    decode_letter1 = Cipher.decode_coordinate({"v", "h"})
+    decode_letter2 = Cipher.decode_coordinate({"v", "i"})
+    decode_letter3 = Cipher.decode_coordinate({"d", "u"})
+    assert decode_letter1 == "m"
+    assert decode_letter2 == "n"
+    assert decode_letter3 == "r"
+  end
+
+  #test "Find the sentence from cipher sentence" do
+  #  key_word = "vigilance"
+  #  sentence_cipher = "hmkbxebpxpmyllyrxiiqtoltfgzzv"
+  #  sentence = Cipher.decode( sentence_cipher, key_word )
+  #  assert sentence = "meetmeontuesdayeveningatseven"
+  #end
+
 end

@@ -53,4 +53,17 @@ defmodule AdventOfCode.Cipher do
     cipher = for coordinate <- coordinates, do: find_coordinate( coordinate )
     Enum.join( cipher, "" )
   end
+
+  def decode( sentence_cipher, key_word ) do
+    coordinates = get_coordinates( key_word, sentence_cipher )
+  end
+
+  def decode_coordinate( {x, dec} ) do
+    <<binary_coor::8>> = x
+    size = ?a..binary_coor |> Enum.to_list |> length
+    matriz = create_matriz()
+     [[letter|_sentence]] = Enum.filter( matriz, fn row -> <<Enum.at(row, size-1)>> == dec end)
+    <<letter>>
+  end
+
 end
