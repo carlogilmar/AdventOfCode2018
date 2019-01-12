@@ -4,7 +4,6 @@ defmodule AdventOfCode.Cipher do
   def alter_alphabet( [init|sentence] ), do: sentence ++ [init]
 
   def generate_matriz( matriz, abc ) when abc == 'zabcdefghijklmnopqrstuvwxy', do: matriz ++ [abc]
-
   def generate_matriz( matriz, abc ) do
     matriz = matriz ++ [abc]
     new_alp = alter_alphabet( abc )
@@ -17,8 +16,7 @@ defmodule AdventOfCode.Cipher do
   end
 
   def find_coordinate( {coor_x, coor_y} ) do
-    matriz = create_matriz()
-    row = Enum.find( matriz, fn [x|_y] -> <<x>> == "#{coor_x}"  end)
+    row = create_matriz() |> Enum.find( fn [x|_y] -> <<x>> == "#{coor_x}"  end)
     <<binary_coor::8>> = coor_y
     size = ?a..binary_coor |> Enum.to_list |> length
     letter = Enum.at( row, size-1)
@@ -27,8 +25,8 @@ defmodule AdventOfCode.Cipher do
 
   def get_coordinates( key_word, sentence ) do
     sentence_letters = sentence |> String.replace(" ", "") |> String.codepoints
-    size = length( sentence_letters )
-    key_word_filled = fill( key_word, size )
+    size_sentence = length( sentence_letters )
+    key_word_filled = fill( key_word, size_sentence )
     Enum.zip( key_word_filled, sentence_letters )
   end
 
