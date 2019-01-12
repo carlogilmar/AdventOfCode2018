@@ -48,4 +48,11 @@ defmodule AdventOfCode.Cipher do
     add_letters { letters_filled, size, tail_sentence_filled, new_sentence_filled==size }
   end
 
+  def cipher_sentence( key_word, sentence ) do
+    key_word = String.downcase( key_word )
+    sentence = String.downcase( sentence )
+    coordinates = get_coordinates( key_word, sentence )
+    cipher = for coordinate <- coordinates, do: find_coordinate( coordinate )
+    Enum.join( cipher, "" )
+  end
 end

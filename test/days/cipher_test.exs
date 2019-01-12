@@ -43,4 +43,11 @@ alias AdventOfCode.Cipher
     assert length( coordinates ) == 29
   end
 
+  test "Cipher a sentence with the alphabet cipher" do
+    key_word = "vigilance"
+    sentence = "meet me on Tuesday evening at seven"
+    sentence_cipher = Cipher.cipher_sentence( key_word, sentence )
+    assert sentence_cipher == "hmkbxebpxpmyllyrxiiqtoltfgzzv"
+  end
+
 end
