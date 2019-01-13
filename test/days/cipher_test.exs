@@ -59,11 +59,11 @@ alias AdventOfCode.Cipher
     assert decode_letter3 == "r"
   end
 
-  #test "Find the sentence from cipher sentence" do
-  #  key_word = "vigilance"
-  #  sentence_cipher = "hmkbxebpxpmyllyrxiiqtoltfgzzv"
-  #  sentence = Cipher.decode( sentence_cipher, key_word )
-  #  assert sentence = "meetmeontuesdayeveningatseven"
-  #end
+  test "Find the sentence from cipher sentence" do
+    key_word = "vigilance"
+    sentence_cipher = "hmkbxebpxpmyllyrxiiqtoltfgzzv"
+    sentence = Cipher.decode( sentence_cipher, key_word )
+    assert sentence == "meetmeontuesdayeveningatseven"
+  end
 
 end
