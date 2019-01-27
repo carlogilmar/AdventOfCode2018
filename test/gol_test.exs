@@ -32,4 +32,37 @@ defmodule GameOfLifeTest do
     assert neighbouts6 == [:c12, :c9, :c10, :c16, :c14, :c4, :c1, :c2]
   end
 
+  test "Get the next state of a cell" do
+    population = GameOfLife.fake_population2()
+    next_state1 = GameOfLife.get_next_state( population, {1,1} )
+    next_state2 = GameOfLife.get_next_state( population, {1,2} )
+    next_state3 = GameOfLife.get_next_state( population, {3,3} )
+    assert next_state1 == {1,:rule4}
+    assert next_state2 == {0,:rule1}
+  end
+
+  test "Apply rule 4" do
+    n1 = [1,1,1,0,0,0,0,0]
+    n2 = [0,0,0,0,0,0,0,0]
+    next_n1 = GameOfLife.apply_rule_4( n1 )
+    next_n2 = GameOfLife.apply_rule_4( n2 )
+    assert next_n1 == {1, :rule4}
+    assert next_n2 == {0, :rule4}
+  end
+
+  test "Apply rules for live states" do
+    n1 = [1,0,0,0,0,0,0,0]
+    n2 = [1,1,0,0,0,0,0,0]
+    n3 = [1,1,1,0,0,0,0,0]
+    n4 = [1,1,1,1,0,0,0,0]
+    next_n1 = GameOfLife.apply_rules_for_live_cell( n1 )
+    next_n2 = GameOfLife.apply_rules_for_live_cell( n2 )
+    next_n3 = GameOfLife.apply_rules_for_live_cell( n3 )
+    next_n4 = GameOfLife.apply_rules_for_live_cell( n4 )
+    assert next_n1 ==  {0, :rule1}
+    assert next_n2 ==  {1, :rule2}
+    assert next_n3 ==  {1, :rule2}
+    assert next_n4 ==  {0, :rule3}
+  end
+
 end
