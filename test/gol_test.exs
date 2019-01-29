@@ -72,8 +72,11 @@ defmodule GameOfLifeTest do
   end
 
   test "Apply evoluton" do
-    organism = GameOfLife.fake_population2()
-    next_state = GameOfLife.evolution( organism )
-    assert next_state == [[0, 0, 1, 0], [1, 1, 1, 0], [0, 0, 0, 0], [1, 0, 1, 0]]
+    organism1 = GameOfLife.fake_population2()
+    organism2 = GameOfLife.fake_population3()
+    next_state1 = GameOfLife.evolution( organism1 )
+    next_state2 = GameOfLife.evolution( organism2 )
+    assert next_state1 == [[0, 0, 1, 0], [1, 1, 1, 0], [0, 0, 0, 0], [1, 0, 1, 0]]
+    assert next_state2 == [[0, 1, 0, 1], [0, 0, 0, 0], [0, 0, 1, 0], [0, 1, 0, 0]]
   end
 end

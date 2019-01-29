@@ -18,6 +18,15 @@ defmodule GameOfLife do
     ]
   end
 
+  def fake_population3() do
+    [
+      [0,1,0,1],
+      [1,1,0,0],
+      [1,0,1,1],
+      [0,0,0,1]
+    ]
+  end
+
   def get_neighbors( population, {x,y} ) do
     up_neighbors = population |> get_up_neighbors(x,y)
     middle_neighbors = population |> get_middle_neighbors(x,y)
