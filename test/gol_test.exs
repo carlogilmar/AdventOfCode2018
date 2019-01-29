@@ -67,22 +67,8 @@ defmodule GameOfLifeTest do
   test "Get the coordinates" do
     population = GameOfLife.fake_population()
     coordinates = GameOfLife.get_coordinates( population )
-    waiting_coordinates =
-      [
-        [{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}],
-        [{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}],
-        [{0, 2}, {1, 2}, {2, 2}, {3, 2}, {4, 2}],
-        [{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}]
-      ]
+    waiting_coordinates = [[{0, 0}, {1, 0}, {2, 0}, {3, 0}], [{0, 1}, {1, 1}, {2, 1}, {3, 1}], [{0, 2}, {1, 2}, {2, 2}, {3, 2}], [{0, 3}, {1, 3}, {2, 3}, {3, 3}]]
     assert coordinates == waiting_coordinates
   end
-
-  #test "Make the evolution" do
-  #  population = GameOfLife.fake_population()
-  #  new_state1 = GameOfLife.evolution( population )
-  #  new_state2 = GameOfLife.evolution( new_state1 )
-  #  assert length(new_state1) == 4
-  #  assert length(new_state2) == 4
-  #end
 
 end

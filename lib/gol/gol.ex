@@ -132,10 +132,6 @@ defmodule GameOfLife do
     end
   end
 
-  def evolution( population ) do
-    coordinates = get_coordinates( population )
-  end
-
   def get_coordinates( population ) do
     get_coordinates_per_row( {population, 0, length(population), false}, [] )
   end
@@ -143,7 +139,7 @@ defmodule GameOfLife do
   def get_coordinates_per_row( {_population, _index, _max_index, true}, current_coordinates ), do: current_coordinates
   def get_coordinates_per_row( {population, index, max_index, false}, current_coordinates ) do
     [row | tail_population] = population
-    column_index = Enum.to_list(0..max_index)
+    column_index = Enum.to_list(0..max_index-1)
     coordinates_from_row =
       for x_index <- column_index do
         { x_index, index }
@@ -152,5 +148,22 @@ defmodule GameOfLife do
     get_coordinates_per_row {tail_population, index+1, max_index, index+1==max_index}, coordinates
   end
 
+  def evolution( population ) do
+    coordinates = get_coordinates( population )
+    max_index = length( coordinates )
+    evolution_row( population, {coordinates, 0, max_index, 0 == max_index}, [] )
+  end
+
+  def evolution_row( _population, {_coordinates, _index, _max_index, true}, next_state ), do: next_state
+  def evolution_row( population, {coordinates, index, max_index, false}, next_state ) do
+    [ current_row | next_coordinates ] = coordinates
+    next_state_from_row =
+      for coordinate <- current_row do
+        {next_state, _reason} = get_next_state( population, coordinate )
+        next_state
+      end
+    next_evolution = next_state ++ [next_state_from_row]
+    evolution_row( population, {next_coordinates, index+1, max_index, index+1 == max_index}, next_evolution )
+  end
 
 end
