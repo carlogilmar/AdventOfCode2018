@@ -71,4 +71,8 @@ defmodule GameOfLifeTest do
     assert coordinates == waiting_coordinates
   end
 
+  test "Make the evolution" do
+    assert 1 == 2
+  end
+
 end
