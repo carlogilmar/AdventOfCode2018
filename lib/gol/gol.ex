@@ -132,4 +132,25 @@ defmodule GameOfLife do
     end
   end
 
+  def evolution( population ) do
+    coordinates = get_coordinates( population )
+  end
+
+  def get_coordinates( population ) do
+    get_coordinates_per_row( {population, 0, length(population), false}, [] )
+  end
+
+  def get_coordinates_per_row( {_population, _index, _max_index, true}, current_coordinates ), do: current_coordinates
+  def get_coordinates_per_row( {population, index, max_index, false}, current_coordinates ) do
+    [row | tail_population] = population
+    column_index = Enum.to_list(0..max_index)
+    coordinates_from_row =
+      for x_index <- column_index do
+        { x_index, index }
+      end
+    coordinates = current_coordinates ++ [coordinates_from_row]
+    get_coordinates_per_row {tail_population, index+1, max_index, index+1==max_index}, coordinates
+  end
+
+
 end
