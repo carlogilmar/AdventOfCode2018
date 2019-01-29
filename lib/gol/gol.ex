@@ -213,7 +213,7 @@ defmodule GameOfLife do
   end
 
   def print_cell( 1 ), do: "😗|"
-  def print_cell( 0 ), do: "💀|"
+  def print_cell( 0 ), do: "  |"
 
   def get_random_color() do
     color_number = Enum.random(16..255)
