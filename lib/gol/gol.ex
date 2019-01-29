@@ -195,12 +195,28 @@ defmodule GameOfLife do
 
   def start_game_of_life(index, organism) do
     IO.puts "Evolución #{index}"
-    IO.puts "-------------"
-    IO.inspect organism
-    IO.puts "-------------"
+    print_organism( organism )
     Process.sleep(1000)
     IEx.Helpers.clear
     new_organism = evolution( organism )
     start_game_of_life( index+1, new_organism )
+  end
+
+  def print_organism( organism ) do
+    Enum.each( organism, fn x -> print_row(x) end)
+  end
+
+  def print_row( row ) do
+    cells = for cell <- row, do: print_cell( cell )
+    cells_with_color = for c <- cells, do: [get_random_color()] ++ [c]
+    List.flatten( cells_with_color ) |> Bunt.puts
+  end
+
+  def print_cell( 1 ), do: "😗|"
+  def print_cell( 0 ), do: "💀|"
+
+  def get_random_color() do
+    color_number = Enum.random(16..255)
+    String.to_atom "color#{color_number}"
   end
 end
