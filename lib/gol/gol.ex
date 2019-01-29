@@ -187,4 +187,20 @@ defmodule GameOfLife do
     new_organism = organism ++ [row]
     generate_organism( {size, index+1, index+1 == size }, new_organism )
   end
+
+  def start(size) do
+    organism = new_organism(size)
+    start_game_of_life(0,organism)
+  end
+
+  def start_game_of_life(index, organism) do
+    IO.puts "Evolución #{index}"
+    IO.puts "-------------"
+    IO.inspect organism
+    IO.puts "-------------"
+    Process.sleep(1000)
+    IEx.Helpers.clear
+    new_organism = evolution( organism )
+    start_game_of_life( index+1, new_organism )
+  end
 end
