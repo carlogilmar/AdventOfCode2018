@@ -79,4 +79,9 @@ defmodule GameOfLifeTest do
     assert next_state1 == [[0, 0, 1, 0], [1, 1, 1, 0], [0, 0, 0, 0], [1, 0, 1, 0]]
     assert next_state2 == [[0, 1, 0, 1], [0, 0, 0, 0], [0, 0, 1, 0], [0, 1, 0, 0]]
   end
+
+  test "Generate random matrix" do
+    m = GameOfLife.new_organism( 4 )
+    assert length( m ) == 4
+  end
 end

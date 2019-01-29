@@ -175,4 +175,16 @@ defmodule GameOfLife do
     evolution_row( population, {next_coordinates, index+1, max_index, index+1 == max_index}, next_evolution )
   end
 
+  def new_organism( size ), do: generate_organism( {size, 0, false }, [] )
+
+  def generate_organism( {_size, _index, true}, organism ), do: organism
+  def generate_organism( {size, index, false}, organism ) do
+    index_in_row = Enum.to_list(0..size-1)
+    row =
+      for _i <- index_in_row do
+        Enum.random(0..1)
+      end
+    new_organism = organism ++ [row]
+    generate_organism( {size, index+1, index+1 == size }, new_organism )
+  end
 end
