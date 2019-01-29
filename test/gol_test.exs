@@ -71,8 +71,9 @@ defmodule GameOfLifeTest do
     assert coordinates == waiting_coordinates
   end
 
-  test "Make the evolution" do
-    assert 1 == 2
+  test "Apply evoluton" do
+    organism = GameOfLife.fake_population2()
+    next_state = GameOfLife.evolution( organism )
+    assert next_state == [[0, 0, 1, 0], [1, 1, 1, 0], [0, 0, 0, 0], [1, 0, 1, 0]]
   end
-
 end
