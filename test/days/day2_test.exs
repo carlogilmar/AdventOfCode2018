@@ -27,4 +27,15 @@ defmodule AdventOfCodeTest.Day1Test do
     assert counters_s7 == [:three]
   end
 
+  test "Get the checksum " do
+    list = [:twice, :twice, :three, :twice]
+    checksum = Day2.get_checksum( list )
+    assert checksum == %{ twice: 3, three: 1 }
+  end
+
+  test "Get the final number from a multiline" do
+    multiline = ["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"]
+    sum = Day2.process( multiline )
+    assert sum == 12
+  end
 end

@@ -1,4 +1,5 @@
 defmodule AdventOfCode.Day2 do
+  alias AdventOfCode.Util
 
   def validate_line( line ) do
     line
@@ -29,8 +30,22 @@ defmodule AdventOfCode.Day2 do
       {true, false} -> [:twice]
       {false, true} -> [:three]
       {false, false} -> []
-      _ -> raise "No condition used!!!"
+      _ -> raise "No condition for apply here!!!!!"
     end
+  end
+
+  def get_checksum( tags ) do
+    twices = Enum.count( tags, fn tag -> tag == :twice end)
+    threes = Enum.count( tags, fn tag -> tag == :three end)
+    %{ twice: twices, three: threes }
+  end
+
+  def process( multiline ) do
+    tags_in_multiline = for line <- multiline, do: validate_line( line )
+    tags = tags_in_multiline |> List.flatten()
+    %{ twice: twices, three: threes } = get_checksum( tags )
+    IO.puts "Checksum :: (II) #{twices} * (III) #{threes} "
+    twices * threes
   end
 
 end
