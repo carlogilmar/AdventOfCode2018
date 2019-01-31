@@ -48,4 +48,10 @@ defmodule AdventOfCode.Day2 do
     twices * threes
   end
 
+  def get_exercise_result() do
+    "day2/day2.txt"
+      |> Util.read_file()
+      |> process()
+  end
+
 end
