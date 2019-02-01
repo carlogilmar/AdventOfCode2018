@@ -29,29 +29,24 @@ defmodule AdventOfCode.Day3 do
 
 	def redraw_claim_rows( {claim_rows, x, w} ) do
 		for row <- claim_rows do
-			n = redraw2( {row, x, w, 0, 0 >= x, 0 < x+w }, [] )
-			n
+			redraw2( {row, x, w, 0, 0 >= x, 0 < x+w }, [] )
 		end
 	end
 
-	#def redraw(row, x, w) do
-	#	size = length(row)
-	#	spaces_left = String.duplicate(".", x) |> String.codepoints
-	#	drawing = String.duplicate("#", w) |> String.codepoints
-	#	spaces_rigth = String.duplicate(".", (size-x-w)) |> String.codepoints
-	#	new_row = [spaces_left] ++ [drawing] ++ [spaces_rigth]
-	#	new_row |> List.flatten
-	#end
+	def set_inch( "#" ), do: "x"
+	def set_inch( "." ), do: "#"
 
 	def redraw2( {row, x, w, index, true, true}, new_row ) do
-		[_h|row_tail] = row
-		n_row = new_row ++ ["#"]
+		[h|row_tail] = row
+		next_inch = set_inch( h )
+		n_row = new_row ++ [next_inch]
 		case row_tail do
 			[] -> n_row
 			_ -> redraw2( {row_tail, x, w, index+1, index+1 >= x, index+1 < x+w }, n_row )
 		end
 	end
-	def redraw2( {row, x, w, index, _f, _fa}, new_row ) do
+
+	def redraw2( {row, x, w, index, _, _}, new_row ) do
 		[h|row_tail] = row
 		n_row = new_row ++ [h]
 		case row_tail do
