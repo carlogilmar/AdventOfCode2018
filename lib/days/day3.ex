@@ -1,4 +1,5 @@
 defmodule AdventOfCode.Day3 do
+  alias AdventOfCode.Util
 
   def build_matriz( size ), do: fill_matriz( size, 0, false, [] )
 
@@ -34,6 +35,7 @@ defmodule AdventOfCode.Day3 do
 	end
 
 	def set_inch( "#" ), do: "x"
+	def set_inch( "x" ), do: "x"
 	def set_inch( "." ), do: "#"
 
 	def redraw2( {row, x, w, index, true, true}, new_row ) do
@@ -57,14 +59,30 @@ defmodule AdventOfCode.Day3 do
 
 	def drawing_matriz( matriz_init_size, rectangles ) do
 		matriz = build_matriz( matriz_init_size )
-		redraw_rectangles( matriz, rectangles)
+		IO.puts "Matrix generated..."
+		redraw_rectangles( matriz, rectangles, 0)
 	end
 
-	def redraw_rectangles( matriz, []), do: matriz
-	def redraw_rectangles( matriz, rectangles ) do
+	def redraw_rectangles( matriz, [""], _index), do: matriz
+	def redraw_rectangles( matriz, rectangles, index ) do
+		IO.puts "Process... #{index}"
 		[rectangle|rectangles_tail] = rectangles
 		new_matriz = draw_rectangle_in_matriz( matriz, rectangle )
-		redraw_rectangles( new_matriz, rectangles_tail )
+		redraw_rectangles( new_matriz, rectangles_tail, index+1 )
 	end
 
+  def get_exercise_result() do
+    rectangles = "day3/day3.txt" |> Util.read_file()
+		matriz = drawing_matriz( 1000, rectangles )
+		count_inches( matriz )
+  end
+
+	def count_inches( matriz ) do
+		counters =
+		for row <- matriz do
+			Enum.count( row, fn e -> e == "x" end)
+		end
+		final_sum = Enum.sum( counters )
+		{ :final_sum, final_sum }
+	end
 end
