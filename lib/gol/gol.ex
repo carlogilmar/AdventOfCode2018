@@ -188,6 +188,7 @@ defmodule GameOfLife do
     generate_organism( {size, index+1, index+1 == size }, new_organism )
   end
 
+  ## Here Start the game of life!!!
   def start(size) do
     organism = new_organism(size)
     start_game_of_life(0,organism)
